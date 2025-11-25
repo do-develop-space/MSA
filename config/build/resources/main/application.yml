@@ -1,0 +1,32 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-service
+  profiles:
+    active: native,default # native file repository
+  cloud:
+    bus:
+      enabled: false # True, rabbitmq 이용
+    config:
+      server:
+        native:
+#          search-locations: file:./config
+          # 절대 경로로 입력
+          search-locations: file:/Users/danny/Desktop/workspace/egovframe-msa-edu/config
+#          search-locations: file:/Users/danny/Desktop/workspace/egovframe-msa-edu/backend/config/config
+#          search-locations: ${search.location:file:///${user.home}/workspace.edu/egovframe-msa-edu/config} # Windows
+#           search-locations: file://${user.home}/workspace.edu/egovframe-msa-edu/config # MacOS
+#  rabbitmq:
+#    host: ${rabbitmq.hostname:localhost}
+#    port: 5672
+#    username: guest
+#    password: guest
+
+# config server actuator
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: busrefresh
