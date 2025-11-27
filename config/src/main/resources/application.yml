@@ -12,9 +12,11 @@ spring:
     config:
       server:
         native:
-#          search-locations: file:./config
-          # 절대 경로로 입력
-          search-locations: file:/Users/danny/Desktop/workspace/MSA/config/config
+          # K8S
+          search-locations: file:/config
+          # Local
+#          search-locations: file:/Users/danny/Desktop/workspace/MSA/config/config
+
 #          search-locations: file:/Users/danny/Desktop/workspace/egovframe-msa-edu/config
 #          search-locations: file:/Users/danny/Desktop/workspace/egovframe-msa-edu/backend/config/config
 #          search-locations: ${search.location:file:///${user.home}/workspace.edu/egovframe-msa-edu/config} # Windows
@@ -26,8 +28,8 @@ spring:
 #    password: guest
 
 # config server actuator
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: busrefresh
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health # busrefresh

@@ -35,11 +35,17 @@ public class WebFluxSecurityConfig {
             ReactiveAuthorization.AUTHORIZATION_URI, "/", "/csrf",
             // About Yellow Store
             "/yellow-store-service/payments/**",
-            "/yellow-store-service/api/v1/**",
+//            "/yellow-store-service/api/v1/**",
+            "/yellow-store-service/api/v1/search/**",
             "/yellow-store-service/toss-payment.html",
 
             "/user-service/login", "/?*-service/api/v1/messages/**", "/api/v1/messages/**",
             "/?*-service/actuator/?*", "/actuator/?*",
+
+            // About Member Service
+            "/member-service/login", "/member-service/api/v1/refresh/token",
+            // api/v1/login , api/v1/refresh/token은 원래 존재하지 않아야 보안을 높일 수 있다. (swagger에 노출되지 않으려면 사용X)
+            "/member-service/api/v1/login", "/member-service/api/v1/refresh/token",
             "/v3/api-docs/**", "/?*-service/v3/api-docs", "/swagger*/**", "/webjars/**"
     };
     private final static String USER_JOIN_ANTPATTERNS = "/user-service/api/v1/users";

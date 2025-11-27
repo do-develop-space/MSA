@@ -1,9 +1,15 @@
 # docker run --name egov-config -d -p 8888:8888 -e profile=prod -e ENCRYPT_KEY=??? egovframework/egov-config
-# base image - openjdk8
-FROM openjdk:8-jre-alpine
+# Java 17 base image (Amazon Corretto)
+#FROM amazoncorretto:17-alpine
+# openjdk8 base image
+FROM eclipse-temurin:8-jre
 
 # curl(healthcheck)
-RUN apk --no-cache add curl
+#RUN apk --no-cache add curl
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
+
 # directory 생성
 RUN mkdir -p /usr/app/config
 # jar 파일이 복사되는 위치
@@ -12,7 +18,10 @@ ENV APP_HOME=/usr/app/
 WORKDIR $APP_HOME
 # jar 파일 복사
 COPY build/libs/*.jar config.jar
+# config 디렉토리 복사
+#COPY config/ /usr/app/config/
 # application port
 EXPOSE 8888
 # 실행
-CMD ["java", "-Dsearch.location=/usr/app/config", "-jar", "config.jar"]
+#CMD ["java", "-Dsearch.location=/usr/app/config", "-jar", "config.jar"]
+CMD ["java", "-jar", "config.jar"]

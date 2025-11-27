@@ -1,17 +1,20 @@
 plugins {
     id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '2.7.18'
     id 'java'
 }
 
 group = 'org.egovframe.cloud'
 version = '1.0.0'
+sourceCompatibility = '1.8'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-        vendor = JvmVendorSpec.AMAZON
-    }
-}
+//java {
+//    toolchain {
+////        languageVersion = JavaLanguageVersion.of(17)
+////        vendor = JvmVendorSpec.AMAZON
+//        languageVersion = JavaLanguageVersion.of(8)
+//    }
+//}
 
 repositories {
     mavenCentral()
@@ -28,7 +31,7 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-config-server'
     implementation 'org.springframework.cloud:spring-cloud-config-monitor'    // webhook
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
-    implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'  // bus
+//    implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'  // bus
     implementation 'org.springframework.boot:spring-boot-starter-actuator'    // bus
     implementation 'net.logstash.logback:logstash-logback-encoder:7.4'        // logstash logback
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
